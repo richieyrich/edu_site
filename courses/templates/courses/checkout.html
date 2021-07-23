@@ -1,0 +1,68 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+{% load course_custom_tags %}
+
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <br>
+
+    <h2 class="display-2">Checkout Page</h2>
+    <hr> <br>
+    <div class="row">
+        <div class="col ">
+            <div class="card mx-auto" style="width: 18rem;">
+                <img class="card-img-top" src="{{course.thumbnail.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.name }}</h5>
+                    <p>Save {{ course.discount }}% <br>
+                        <span class="price">
+                            <del> {{ course.price|currency }}</del> &nbsp; <span> {% cal_sellprice course.price course.discount as value %} {{ value|currency }}</span>
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <p class="display-5">{{course.name}}</p>
+            <hr>
+            <p class="display-5">Payable amount : <b>{% cal_sellprice course.price course.discount as value %} {{value|currency }}</b></p>
+            <a href="?action=create_payment" class="btn btn-success"> Continue Payment</a>
+        </div>
+    </div>
+</div>
+
+{% if order is not none %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "rzp_test_jXWbwRntIWo03f", // Enter the Key ID generated from the Dashboard       
+        "name": "Void Way",
+        "description": "payment for {{course.name}}",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "callback_url": "http://127.0.0.1:8000/payment_success",
+        "prefill": { "name": "{{user.name}}", "email": "{{user.email}}", "contact": "9999999999" },
+        "theme": { "color": "#3399cc" }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open()
+
+</script>
+{% endif %}
+
+{% if error %}
+<script>
+    window.onload = ()=>{
+        alert('{{error}}')
+    }
+</script>
+{% endif %}
+
+{% endblock %}

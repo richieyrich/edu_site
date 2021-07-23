@@ -1,0 +1,29 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+{% load course_custom_tags %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'courses/css/common.css' %}">
+{% endblock %}
+{% block title %} Signup {% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <br> 
+    <h2 class="display-2">Signup Page</h2>
+    <div class="p-3">
+        <form action="/signup" method="post">
+            {%  csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="SignUp" class="btn btn-success btn-lg">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

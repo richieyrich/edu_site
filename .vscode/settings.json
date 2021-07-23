@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "cenv\\Scripts\\python.exe",
+    "css.styleSheets": [ "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    ]
+}

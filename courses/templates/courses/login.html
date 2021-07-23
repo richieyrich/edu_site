@@ -1,0 +1,26 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+    <h2 class="display-2">Login Page</h2>
+    <hr> <br> {{request.user}}
+    <div>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Login" class="btn btn-success btn-lg">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

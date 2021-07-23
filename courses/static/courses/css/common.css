@@ -1,0 +1,39 @@
+
+.price {
+    font-size: 20px;
+}
+
+#video_list{
+    overflow-y: scroll;
+}
+
+.active-link {
+    background-color: aqua;
+    
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(143, 12, 143);
+}
+
+a {
+    color: gray;
+}
+
+.active-link-color {
+    color: white;
+}
+
+.active-link-color:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.hoveff:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.display-5 {
+    font-size: 35px;
+}
